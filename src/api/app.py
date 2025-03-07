@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 
 from src.api.routers import (
@@ -34,5 +35,14 @@ async def custom_swagger_ui_html():
     )
 
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
+)
+
+
 def start_app() -> None:
-    uvicorn.run("api.app:app", reload=True, host=settings.API_HOST, port=settings.API_PORT)
+    uvicorn.run(
+        "api.app:app", reload=True, host=settings.API_HOST, port=settings.API_PORT
+    )
