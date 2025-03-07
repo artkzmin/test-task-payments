@@ -15,7 +15,7 @@
     Запуск контейнера с API отложен на 30 секунд, поэтому потребуется подождать.
 4. Документация API будет доступна по адресу: http://127.0.0.1:8000/docs; само API - http://127.0.0.1:8000/.
 
-## Тестовые данные по умолчанию (из файла `.env.dist`)
+## Тестовые данные по умолчанию из файла [.env.dist](.env.dist)
 ### Администратор
 Email - `admin@domain.com`
 
@@ -52,20 +52,64 @@ balance - `0`
 ## Запуск приложения
 
 ### Переменные окружения
-Разместите файл с переменными окружения `.env` в корне проекта. Пример файла `.env` - `.env.dist` (заполнен тестовыми данными).
-### Способ №1. Docker Compose
-**Обязательно** укажите в файле `.env` следующие данные для хоста и порта БД (они указаны также в файле `.env.dist`), остальные данные могут быть собственные:
+Разместите файл с переменными окружения `.env` в корне проекта. Пример файла `.env` - [.env.dist](.env.dist) (заполнен тестовыми данными):
 ```
+MODE=PROD
+
+# Подключение к БД
+DB_HOST=dimatech_db # Используется в Docker Compose. Не изменять, если для запуска используется Docker Compose
+DB_PORT=5432 # Используется в Docker Compose. Не изменять, если для запуска используется Docker Compose
+DB_USER=dimatech
+DB_PASS="16DWXR6NGFY4MW#o"
+DB_NAME=dimatech
+
+# Не рекомендуется изменять
+JWT_SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+JWT_ALGORITHM=HS256 # Не изменять
+ACCESS_TOKEN_EXPIRE_MINUTES=600
+
+
+API_HOST=0.0.0.0 # Не изменять
+API_PORT=8000 # Не изменять, если используете Docker Compose
+
+# Данные для администратора
+ADMIN_EMAIL=admin@domain.com
+ADMIN_PASSWORD="Fuo5|%2bwAc?bGl|j9|C"
+ADMIN_NAME=Брэд
+ADMIN_SURNAME=Питт
+ADMIN_PATRONYMIC=Иванович
+
+# Данные для обычного пользователя
+COMMON_EMAIL=common@domain.com
+COMMON_PASSWORD="spRbpe82bndKqnb2q7~"
+COMMON_NAME=Роберт
+COMMON_SURNAME=Дауни
+COMMON_PATRONYMIC=Младший
+
+# Ключ для обработки транзакций
+TRANSACTION_SECRET_KEY=gfdmhghif38yrf9ew0jkf32
+```
+### Способ №1. Docker Compose
+**Обязательно** используйте следующие значения из файла `.env`:
+```
+# База данных
 DB_HOST=dimatech_db
 DB_PORT=5432
+
+# FastAPI
+API_HOST=0.0.0.0
+API_PORT=8000
+
+# Auth
+JWT_ALGORITHM=HS256
 ```
-Запуск Docker Compose:
+Запуск Docker Compose из корня проекта:
 ```
 docker-compose up -d
 ```
 Запуск контейнера с API отложен на 30 секунд, поэтому потребуется подождать.
 
-### Способ №2. Запуск Python-скрипта
+### Способ №2. Запуск без Docker
 #### Переменный окружения
 Укажите в файле `.env` данные для подключения к вашей базе данных PostgreSQL:
 ```
