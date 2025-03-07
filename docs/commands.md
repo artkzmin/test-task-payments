@@ -11,9 +11,7 @@ alembic init src/migrations
 ```
 alembic revision --autogenerate -m "comment"
 ```
-
-## Транзакции
-### Генерация ключа
+### Применение миграций
 ```
-62a8ab5248da1290326e3113fe6b6f6f1ad2e78f5022fac5cb573207281c2f9d
+alembic upgrade head
 ```
