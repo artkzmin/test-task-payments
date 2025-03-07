@@ -1,0 +1,30 @@
+services:
+  dimatech_back_service:
+    container_name: 'dimatech_back'
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    networks:
+      - dimatechNetwork
+    env_file:
+      - .env
+    depends_on:
+      - dimatech_db_service
+
+  dimatech_db_service:
+    image: postgres:16
+    container_name: dimatech_db
+    ports:
+      - "6432:5432"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - dimatechNetwork
+
+networks:
+  dimatechNetwork:
