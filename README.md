@@ -1,5 +1,7 @@
 # REST API. Тестовое задание на вакансию Python Backend Developer
 
+## [Техническое задание](docs/technical_specification.md)
+
 ## Быстрый способ запустить приложение
 1. Скопируйте репозиторий:
     ```
