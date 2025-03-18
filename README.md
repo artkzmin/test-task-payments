@@ -1,4 +1,4 @@
-# REST API. Тестовое задание на вакансию Python Backend Developer от компании [Dimatech](https://dimatech.org/)
+# REST API. Тестовое задание на вакансию Python Backend-разработчик
 
 ## Оглавление
 - [Техническое задание](#техническое-задание)
