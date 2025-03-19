@@ -12,6 +12,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    from src.config import settings
-
-    print(settings.DB_URL)
